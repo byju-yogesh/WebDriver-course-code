@@ -1,2 +1,2 @@
-test\amazecarts.js
-test\watchVideo.js
+test\spec\amazecarts.js
+test\spec\watchVideo.js
