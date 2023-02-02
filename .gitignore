@@ -1,2 +1,3 @@
-test\spec\amazecarts.js
-test\spec\watchVideo.js
+node_module\
+allure-results\
+allure-report\

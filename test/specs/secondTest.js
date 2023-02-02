@@ -1,6 +1,6 @@
 import {expect as expectChai} from 'chai';
 describe('UI controls Test Suite', async () => {
-    xit('UI controls', async()=>{
+    it('UI controls', async()=>{
         await browser.url("https://rahulshettyacademy.com/loginpagePractise");
         await $("#username").setValue("rahulshettyacademy")
         await $("#password").setValue("learning")
@@ -38,7 +38,7 @@ describe('UI controls Test Suite', async () => {
 
         expectChai(await dropdown.getValue()).to.equal("teach")
     })
-    xit('dynamic dropdown controls', async()=>{
+    it('dynamic dropdown controls', async()=>{
         await browser.url("https://rahulshettyacademy.com/AutomationPractice/");
         await $("#autocomplete").setValue("ind")
         await browser.pause(3000);

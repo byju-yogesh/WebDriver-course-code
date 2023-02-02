@@ -1,5 +1,5 @@
 describe('My Login application', async () => {
-    xit('loginPageFailed', async () => {
+    it('loginPageFailed', async () => {
         await browser.url("https://rahulshettyacademy.com/loginpagePractise");
         console.log(await browser.getTitle());
 
@@ -21,7 +21,7 @@ describe('My Login application', async () => {
 
     })
 
-    xit('Login Success Page', async()=>{
+    it('Login Success Page', async()=>{
         await browser.url("https://rahulshettyacademy.com/loginpagePractise");
         await $("#username").setValue("rahulshettyacademy")
         await $("#password").setValue("learning")

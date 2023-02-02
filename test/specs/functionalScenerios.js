@@ -10,14 +10,15 @@ describe('Functional Sceniores Test Suite', async () => {
         // await $("=Top").click()
         await browser.url("http://only-testing-blog.blogspot.com/2014/09/selectable.html")
         await $("button").doubleClick()
+        await browser.pause(2000)
         console.log(await browser.isAlertOpen())
-        expectChai(await browser.isAlertOpen()).to.be.true
-        expectChai(await browser.getAlertText()).to.equal("You double clicked me.. Thank You..")
+        await expectChai(await browser.isAlertOpen()).to.be.true
+        await expectChai(await browser.getAlertText()).to.equal("You double clicked me.. Thank You..")
         await browser.acceptAlert()
         await browser.pause(3000)
 
     })
-    xit('web table validations', async () => {
+    it('web table validations', async () => {
         await browser.url("https://rahulshettyacademy.com/seleniumPractise/#/offers");
         await $("tr th:nth-child(1)").click()
         const veggieLocators = await $$("tr td:nth-child(1)");

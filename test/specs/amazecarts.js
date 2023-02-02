@@ -1,10 +1,15 @@
 describe('Amazecarts', async () => {
     it('Amazecarts', async () => {
         await browser.url("https://amazecarts.up.railway.app/");
-        console.log(await browser.getTitle());
+        let homeTitle = await browser.getTitle()
+        console.log(homeTitle);
 
+
+        //verify homepage title
         await expect(browser).toHaveTitleContaining("Home")
-        let val = await $("//a[normalize-space()='SignIn']").getAttribute('href')
+
+        //go to the new window
+        let val = await $("//a[normalize-space()='SignUp']").getAttribute('href')
         console.log(val)
         let newVal = val.slice(1);
         let url = await browser.getUrl();
@@ -12,34 +17,27 @@ describe('Amazecarts', async () => {
         console.log(newUrl);
         await browser.newWindow(newUrl)
         console.log(await browser.getTitle())
+
+        //confirm new window title is not matching with homepage title
+        await expect(browser).not.toHaveTitle(homeTitle)
+
+        //click on any link
         await $("//a[normalize-space()='SignIn']").click();
         await $("//input[@id='email']").waitForExist()
+
+        //login details
         await $("//input[@id='email']").setValue("yogesh123@gmail.com")
         await $("//input[@id='password']").setValue("12345678")
         await $("//input[@value='Sign In'] ").click()
-        // await browser.pause(4000)
-        
-        // //grab incorrect username password alert
-        // await browser.waitUntil(
-        //     async () => (await $("#signInBtn").getAttribute('value')) === 'Sign In',
-        //     {
-        //         timeout: 5000,
-        //         timeoutMsg: "Error Displayed"
-        //     })
-        // console.log(await $(".alert").getText())
 
-        // await expect($("p.text-center")).toHaveTextContaining("username is rahulshettyacademy and Password is learning")
+        //verify cart is empty
 
-    })
-
-    xit('Login Success Page', async()=>{
-        await browser.url("https://rahulshettyacademy.com/loginpagePractise");
-        await $("#username").setValue("rahulshettyacademy")
-        await $("#password").setValue("learning")
-        await $("#signInBtn").click()
-        //wait untill another page is loaded
-        await $("a.btn-primary").waitForExist()
-        await expect(browser).toHaveTitleContaining("ProtoCommerce")
-        await expect(browser).toHaveUrlContaining("shop")
+        //logout
+        await $("//a[@class = 'nav-link'][normalize-space()='Log Out']").click()
+        let handles = await browser.getWindowHandles()
+        await browser.closeWindow()
+        await browser.switchToWindow(handles[0])
+        console.log(await browser.getTitle())
+        await browser.pause(3000)
     })
 })

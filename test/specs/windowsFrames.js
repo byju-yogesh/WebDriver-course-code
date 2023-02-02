@@ -1,5 +1,5 @@
 describe('Windows and Frames Miscellanous', async () => {
-   xit('Parent and Child windows switch', async () => {
+   it('Parent and Child windows switch', async () => {
       await browser.url("https://rahulshettyacademy.com/loginpagePractise/")
       // await browser.pause(3000);
       await $(".blinkingText").click()
@@ -18,7 +18,7 @@ describe('Windows and Frames Miscellanous', async () => {
       await browser.switchWindow("https://rahulshettyacademy.com/loginpagePractise/")
    })
 
-   xit('Frames switch', async () => {
+   it('Frames switch', async () => {
       await browser.url("https://rahulshettyacademy.com/AutomationPractice/")
       await $("#mousehover").scrollIntoView()
       console.log(await $$("a").length)
